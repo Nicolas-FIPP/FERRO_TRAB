@@ -27,7 +27,8 @@ public class UploadServlet extends HttpServlet {
             String novoNome = nomeMusica + "_" + estiloMusica + "_" + cantor + ".mp3";
 
             // Configura o caminho da pasta diretamente
-            String caminhoPasta = "C:\\Users\\nicolas\\Desktop\\FERRO\\trabalho\\src\\main\\webapp\\musicas";
+            String caminhoPasta = getServletContext().getRealPath("/") +"/" + "musicas";
+
             File fpasta = new File(caminhoPasta);
 
             // Cria o caminho do arquivo dentro da pasta

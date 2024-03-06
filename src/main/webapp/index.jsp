@@ -8,6 +8,10 @@
 
   if (user != null && user.isAccess()) {
     usuario = user.getName();
+    String nome = "";
+    for(int i = 0;usuario.charAt(i) != '@';i++)
+      nome += usuario.charAt(i);
+    usuario = nome;
   }
 
 %>
@@ -26,11 +30,13 @@
 <nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#" style="color: white;">Play My Songs!</a>
+    <%if(user == null){ %>
     <form class="d-flex mr-auto" method="post" action="./login-servlet">
       <input  class="form-control me-2" type="text" placeholder="Login" aria-label="Login" name ="login">
       <input  class="form-control me-2" type="password" placeholder="Senha" aria-label="Senha" name ="senha">
       <button class="btn btn-outline-success" type="submit">Login</button>
     </form>
+     <% }%>
   </div>
 </nav>
 <div>
@@ -88,10 +94,12 @@
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="input-group">
+          <form>
+            <div>
           <input type="text" class="form-control" name = "buscaNome" style="text-align: center;" placeholder="Pesquise sua música">
-          <div class="input-group-append">
-            <button style="margin-left: 21px;margin-right: 21px" class="btn btn-outline-success" value = "pesquisaNome" type="button">Pesquisar</button>
-          </div>
+            <button style="margin-left: 21px;margin-right: 21px" class="btn btn-outline-success"  type="submit" >Pesquisar</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -111,33 +119,33 @@
       <tbody>
       <%
         File pastaweb = new File(request.getServletContext().getRealPath("") + "/musicas");
-        String nomeProcurado = request.getParameter("pesquisaNome");
-
+        String nomeProcurado = request.getParameter("buscaNome");
+        System.out.println(nomeProcurado);
         // Atualiza a lista de arquivos a cada requisição
         pastaweb = new File(request.getServletContext().getRealPath("") + "/musicas");
         File[] files = pastaweb.listFiles();
-
-
           if(nomeProcurado != null){
 
           for (File file : files) {
             if (file.isFile() && file.getName().contains(nomeProcurado)) {
-              String caminhoRelativo = request.getContextPath() + "/MuscREQ/" + file.getName();
+
       %>
       <tr>
         <td><%= file.getName() %></td>
         <td>
           <audio controls id="audioPlayer">
-            <source src="<%= caminhoRelativo%>" type="audio/mpeg">
+            <source src="musicas/<%=file.getName()%>" type="audio/mpeg">
+
             Seu navegador não suporta a tag de áudio.
           </audio>
         </td>
       </tr>
       <%
+              }
             }
           }
-        }
-      %>
+              %>
+
       </tbody>
     </table>
   </div>
