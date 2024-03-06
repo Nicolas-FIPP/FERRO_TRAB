@@ -88,9 +88,9 @@
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="input-group">
-          <input type="text" class="form-control" style="text-align: center;" placeholder="Pesquise sua música">
+          <input type="text" class="form-control" name = "buscaNome" style="text-align: center;" placeholder="Pesquise sua música">
           <div class="input-group-append">
-            <button style="margin-left: 21px;margin-right: 21px" class="btn btn-outline-success" type="button">Pesquisar</button>
+            <button style="margin-left: 21px;margin-right: 21px" class="btn btn-outline-success" value = "pesquisaNome" type="button">Pesquisar</button>
           </div>
         </div>
       </div>
@@ -109,17 +109,19 @@
       </tr>
       </thead>
       <tbody>
-      <!-- Use um loop para gerar linhas da tabela dinamicamente -->
       <%
         File pastaweb = new File(request.getServletContext().getRealPath("") + "/musicas");
+        String nomeProcurado = request.getParameter("pesquisaNome");
 
         // Atualiza a lista de arquivos a cada requisição
         pastaweb = new File(request.getServletContext().getRealPath("") + "/musicas");
         File[] files = pastaweb.listFiles();
 
-        if (files != null) {
+
+          if(nomeProcurado != null){
+
           for (File file : files) {
-            if (file.isFile()) {
+            if (file.isFile() && file.getName().contains(nomeProcurado)) {
               String caminhoRelativo = request.getContextPath() + "/MuscREQ/" + file.getName();
       %>
       <tr>
@@ -136,9 +138,6 @@
           }
         }
       %>
-
-
-
       </tbody>
     </table>
   </div>

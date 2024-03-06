@@ -44,8 +44,8 @@ public class UploadServlet extends HttpServlet {
             }
 
             // Redireciona o usuário para a mesma página após o envio do arquivo
-            //response.sendRedirect(request.getContextPath() + "/index.jsp");
-            response.sendRedirect(request.getContextPath() + "/index.jsp?uploadSuccess=true");
+            response.sendRedirect(request.getContextPath() + "/index.jsp");
+
         } catch (Exception e) {
             // Trate a exceção conforme necessário
             request.setAttribute("erro", "Erro ao receber o arquivo: " + e.getMessage());
