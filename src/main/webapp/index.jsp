@@ -20,10 +20,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SPOTIFY</title>
-  <script src =""></script>
-  <script src = "assets/script/playMusic.js"></script>
-  <script src="assets/script/ValidaNomeMusica.js"></script>
+  <script src="assets/script/playMusic.js"></script>
   <script src="assets/script/validarFormulario.js"></script>
+  <script src="assets/script/ValidaNomeMusica.js"></script>
+  
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
@@ -56,7 +57,7 @@
         <form enctype="multipart/form-data" action="upservlet" enctype="multipart/form-data"  method="post" onsubmit=" return validarFormulario()">
           <div class="mb-3">
             <label for="Nomemusica" class="form-label">Digite o nome da musica </label>
-            <input type="text" class="form-control" id="Nomemusica" name="Nmusica" placeholder="Musica" oninput="validarNomeMusica(this.value)" onblur="validarNomeMusicaAoSair()">
+            <input type="text" class="form-control" id="Nomemusica" name="Nmusica" placeholder="Musica" onblur="ValidaNomeMusica()">
             <div id="nomeMusicaErro" style="color: red;"></div>
             <label for="cantor" class="form-label">Digite o nome do cantor:</label>
             <input type="text" class="form-control" id="cantor" name="cantor" placeholder="Cantor" required>
