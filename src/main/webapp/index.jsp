@@ -122,7 +122,8 @@
         File pastaweb = new File(request.getServletContext().getRealPath("") + "/musicas");
         String nomeProcurado = request.getParameter("buscaNome");
         System.out.println(nomeProcurado);
-        // Atualiza a lista de arquivos a cada requisição
+
+
         pastaweb = new File(request.getServletContext().getRealPath("") + "/musicas");
         File[] files = pastaweb.listFiles();
           if(nomeProcurado != null){
